@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "380206719834",
+    "project_id": "gestiondetaches-95207",
+    "storage_bucket": "gestiondetaches-95207.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380206719834:android:cacdc096032fe25260c963",
+        "android_client_info": {
+          "package_name": "com.example.gestiondetaches"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSBCy_Ur0i0Bt1bsdnpGEGwneoR47GFng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

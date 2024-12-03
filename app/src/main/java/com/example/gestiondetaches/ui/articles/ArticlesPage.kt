@@ -89,7 +89,7 @@ fun ArticlesPage(navController: NavController, tasks: Map<LocalDate, List<String
             }
 
             Button(
-                onClick = { navController.popBackStack() },
+                onClick = {  navController.navigate("calendar") },
                 modifier = Modifier.size(120.dp, 40.dp)
             ) {
                 Text(

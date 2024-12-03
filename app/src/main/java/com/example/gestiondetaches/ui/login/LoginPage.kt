@@ -23,6 +23,13 @@ import androidx.navigation.NavController
 fun LoginPage(navController: NavController) {
     var username by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var passwordError by remember { mutableStateOf(false) }
+    var errorMessage by remember { mutableStateOf("") }
+
+    fun isPasswordValid(password: String): Boolean {
+        val regex = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#\$%^&+=!]).{8,}\$")
+        return regex.matches(password)
+    }
 
     // Gradient background
     Box(
@@ -81,7 +88,10 @@ fun LoginPage(navController: NavController) {
             // Password field
             OutlinedTextField(
                 value = password,
-                onValueChange = { password = it },
+                onValueChange = {
+                    password = it
+                    passwordError = false
+                },
                 label = { Text("Password", color = Color.White) },
                 visualTransformation = PasswordVisualTransformation(),
                 leadingIcon = {
@@ -91,6 +101,7 @@ fun LoginPage(navController: NavController) {
                         tint = Color.White
                     )
                 },
+                isError = passwordError,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
@@ -103,11 +114,28 @@ fun LoginPage(navController: NavController) {
 
                 )
             )
+            if (passwordError) {
+                Text(
+                    text = errorMessage,
+                    color = Color.Red,
+                    fontSize = 12.sp,
+                    modifier = Modifier
+                        .align(Alignment.Start)
+                        .padding(horizontal = 16.dp)
+                )
+            }
             Spacer(modifier = Modifier.height(24.dp))
 
             // Login button
             Button(
-                onClick = { navController.navigate("calendar") },
+                onClick = {
+                    if (isPasswordValid(password)) {
+                        navController.navigate("calendar")
+                    } else {
+                        passwordError = true
+                        errorMessage = "Password incorrect."
+                    }
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp)

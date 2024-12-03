@@ -1,8 +1,9 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.application) // استخدم هذه فقط
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    kotlin("kapt") // تأكد من إضافة هذه السطر لتفعيل Kapt (لـ Room)
+    kotlin("kapt") // تأكد من إضافة هذا السطر لتفعيل Kapt (لـ Room)
+    id("com.google.gms.google-services") version "4.4.2" apply false //firebase
 }
 
 android {
@@ -40,6 +41,8 @@ dependencies {
     // التبعيات الخاصة بـ Room
     implementation("androidx.room:room-runtime:2.5.2") // Room Database
     kapt("androidx.room:room-compiler:2.5.2") // Kapt لتوليد الكود تلقائيًا
+    implementation(platform("com.google.firebase:firebase-bom:33.6.0")) //firebase
+    implementation("com.google.firebase:firebase-analytics") //firebase
 
     // تبعيات أخرى مثل Compose و Navigation
     implementation("androidx.navigation:navigation-compose:2.7.2")
